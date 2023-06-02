@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Booking {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  rideId    Int
+  paymentId Int
+  createdAt DateTime? @default(now()) @db.Date
+  updatedAt DateTime? @default(now()) @db.Date
+  Payment   Payment   @relation(fields: [paymentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Ride      Ride      @relation(fields: [rideId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User      User      @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model City {
+  id            Int             @id @default(autoincrement())
+  name          String
+  stateId       Int
+  State         State           @relation(fields: [stateId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Neighboorhood Neighboorhood[]
+}
+
+model Match {
+  id         Int       @id @default(autoincrement())
+  firstTeam  String
+  secondTeam String
+  time       DateTime  @db.Timestamp(6)
+  date       DateTime  @db.Date
+  stadiumId  Int
+  createdAt  DateTime? @default(now()) @db.Date
+  updatedAt  DateTime? @default(now()) @db.Date
+  Stadium    Stadium   @relation(fields: [stadiumId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Ride       Ride[]
+}
+
+model Neighboorhood {
+  id      Int       @id @default(autoincrement())
+  name    String    @unique
+  cityId  Int
+  City    City      @relation(fields: [cityId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Ride    Ride[]
+  Stadium Stadium[]
+}
+
+model Payment {
+  id             Int       @id @default(autoincrement())
+  value          Int
+  cardIssuer     String
+  cardLastDigits String
+  createdAt      DateTime? @default(now()) @db.Date
+  updatedAt      DateTime? @default(now()) @db.Date
+  Booking        Booking[]
+}
+
+model Ride {
+  id            Int           @id @default(autoincrement())
+  description   String?
+  price         Int
+  seats         Int
+  startAdressId Int
+  matchId       Int
+  startAt       DateTime      @db.Date
+  returnAt      DateTime?     @db.Date
+  vehicleId     Int
+  createdAt     DateTime?     @default(now()) @db.Date
+  updatedAt     DateTime?     @default(now()) @db.Date
+  Booking       Booking[]
+  Match         Match         @relation(fields: [matchId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Neighboorhood Neighboorhood @relation(fields: [startAdressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Vehicle       Vehicle       @relation(fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Stadium {
+  id              Int           @id @default(autoincrement())
+  name            String        @unique
+  neighboorhoodId Int
+  Match           Match[]
+  Neighboorhood   Neighboorhood @relation(fields: [neighboorhoodId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model State {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  City City[]
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  photo     String?
+  email     String    @unique @db.VarChar(100)
+  password  String
+  createdat DateTime? @default(now()) @db.Date
+  updatedat DateTime? @default(now()) @db.Date
+  Booking   Booking[]
+  Vehicle   Vehicle[]
+}
+
+model Vehicle {
+  id          Int       @id @default(autoincrement())
+  description String?
+  model       String?
+  brand       String?
+  capacity    Int?
+  image       String?
+  userId      Int
+  createdAt   DateTime? @default(now()) @db.Date
+  updatedAt   DateTime? @default(now()) @db.Date
+  Ride        Ride[]
+  User        User      @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
