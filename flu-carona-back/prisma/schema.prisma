@@ -97,8 +97,8 @@ model User {
   photo     String?
   email     String    @unique @db.VarChar(100)
   password  String
-  createdat DateTime? @default(now()) @db.Date
-  updatedat DateTime? @default(now()) @db.Date
+  createdAt DateTime? @default(now()) @db.Date
+  updatedAt DateTime? @default(now()) @db.Date
   Booking   Booking[]
   Vehicle   Vehicle[]
 }

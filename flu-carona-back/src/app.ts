@@ -1,12 +1,14 @@
 import express, { Express } from 'express';
 import cors from 'cors';
 import { connectDb, disconnectDb, loadEnvs } from '@/configs';
+import { routers } from '@/routers';
+
+loadEnvs();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-loadEnvs();
+app.use(routers);
 
 export function init(): Promise<Express> {
   connectDb();
