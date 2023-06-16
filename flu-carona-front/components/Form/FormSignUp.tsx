@@ -1,7 +1,7 @@
 import { FormSignUp } from "@/protocols/protocols";
-import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from 'next/router';
+import { apiUsers } from "@/services";
 
 export default function FormSignUp() {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function FormSignUp() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/sign-up`, formData);
+      await apiUsers.signUp(formData);
       router.push('/sign-in');
     } catch (err) {
       return console.log(err);
