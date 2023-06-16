@@ -20,7 +20,7 @@ export default function FormSignUp() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/users/sign-up', formData);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/sign-up`, formData);
       router.push('/sign-in');
     } catch (err) {
       return console.log(err);
