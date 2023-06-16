@@ -1,4 +1,4 @@
-import { ApplicationError } from "@/protocols";
+import { ApplicationError } from '@/protocols';
 
 function invalidDataError(details: string[]): ApplicationInvalidDataError {
   return {
@@ -9,7 +9,7 @@ function invalidDataError(details: string[]): ApplicationInvalidDataError {
 }
 
 type ApplicationInvalidDataError = ApplicationError & {
-  details: string[],
+  details: string[];
 };
 
 export { invalidDataError };

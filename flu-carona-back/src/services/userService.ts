@@ -1,6 +1,6 @@
-import { CreateUserData } from "@/protocols";
-import { userRepository } from "@/repositories";
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
+import { CreateUserData } from '@/protocols';
+import { userRepository } from '@/repositories';
 
 async function signUp(createUserData: CreateUserData): Promise<void> {
   const { name, photo, email, password } = createUserData;
