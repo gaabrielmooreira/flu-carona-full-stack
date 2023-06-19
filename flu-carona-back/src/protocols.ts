@@ -12,6 +12,8 @@ export type SignInData = Pick<User, 'email' | 'password'>;
 
 export type CreateVehicleData = Omit<Vehicle, 'id' | 'createdAt' | 'updatedAt' | 'userId'>;
 
+export type CreateRideData = Omit<Ride, 'id' | 'createdAt' | 'updatedAt'>;
+
 export type AuthenticatedRequest = Request & JWTPayload;
 
 export type JWTPayload = {
