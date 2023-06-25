@@ -24,7 +24,8 @@ model City {
   name          String
   stateId       Int
   State         State           @relation(fields: [stateId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  Neighboorhood Neighboorhood[]
+  Ride          Ride[]
+  Stadium       Stadium[]
 }
 
 model Match {
@@ -38,15 +39,6 @@ model Match {
   updatedAt  DateTime? @default(now()) @db.Date
   Stadium    Stadium   @relation(fields: [stadiumId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   Ride       Ride[]
-}
-
-model Neighboorhood {
-  id      Int       @id @default(autoincrement())
-  name    String    @unique
-  cityId  Int
-  City    City      @relation(fields: [cityId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  Ride    Ride[]
-  Stadium Stadium[]
 }
 
 model Payment {
@@ -66,27 +58,29 @@ model Ride {
   seats         Int
   startAdressId Int
   matchId       Int
-  startAt       DateTime      @db.Date
-  returnAt      DateTime?     @db.Date
+  startAt       DateTime      @db.Timestamp(6)
+  returnAt      DateTime?     @db.Timestamp(6)
   vehicleId     Int
+  isFinish      Boolean       @default(false)
   createdAt     DateTime?     @default(now()) @db.Date
   updatedAt     DateTime?     @default(now()) @db.Date
   Booking       Booking[]
   Match         Match         @relation(fields: [matchId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  Neighboorhood Neighboorhood @relation(fields: [startAdressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  City          City          @relation(fields: [startAdressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   Vehicle       Vehicle       @relation(fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model Stadium {
   id              Int           @id @default(autoincrement())
   name            String        @unique
-  neighboorhoodId Int
+  cityId          Int
   Match           Match[]
-  Neighboorhood   Neighboorhood @relation(fields: [neighboorhoodId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  City            City          @relation(fields: [cityId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model State {
   id   Int    @id @default(autoincrement())
+  uf   String @unique
   name String @unique
   City City[]
 }
