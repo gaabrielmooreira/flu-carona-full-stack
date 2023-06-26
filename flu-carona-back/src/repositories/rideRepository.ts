@@ -5,8 +5,37 @@ async function create(data: Omit<Ride, 'id' | 'createdAt' | 'updatedAt'>): Promi
   return await prisma.ride.create({ data });
 }
 
-async function findAll(): Promise<Ride[]> {
-  return await prisma.ride.findMany();
+async function findAll() {
+  return await prisma.ride.findMany({
+    include: {
+      Match: {
+        include: {
+          Stadium: {
+            select: {
+              id: true,
+              name: true,
+            }
+          },
+        }
+      },
+      Vehicle: {
+        include: {
+          User: {
+            select: {
+              id: true,
+              name: true,
+              photo: true,
+            }
+          },
+        }
+      },
+      City: {
+        include: {
+          State: true,
+        }
+      },
+    }
+  });
 }
 
 async function findById(id: number): Promise<Ride> {
