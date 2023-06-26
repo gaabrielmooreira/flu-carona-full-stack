@@ -7,7 +7,11 @@ export function handleErrorsMiddleware(err: ApplicationError | Error, _req: Requ
     return res.status(httpStatus.UNAUTHORIZED).send(err.message);
   }
 
-  if (err.name === 'duplicatedEmailError') {
+  if (err.name === 'DuplicatedEmailError') {
     return res.status(httpStatus.CONFLICT).send(err.message);
+  }
+
+  if (err.name === 'BadRequestError') {
+    return res.status(httpStatus.BAD_REQUEST).send(err.message);
   }
 }
