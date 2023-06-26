@@ -12,7 +12,7 @@ const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunc
   if (!token) return generateUnauthorizedResponse(res);
 
   try {
-    const { userId } = jwt.verify(token, process.env.SECRET_KEY) as JWTPayload;
+    const { userId } = jwt.verify(token, process.env.JWT_SECRET) as JWTPayload;
 
     req.userId = userId;
     next();
