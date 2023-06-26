@@ -1,3 +1,4 @@
+import { useAuthContext } from "@/contexts/Auth";
 import { FormSignIn } from "@/protocols/protocols";
 import { apiAuth } from "@/services";
 import { useRouter } from "next/router"
@@ -9,6 +10,7 @@ export default function FormSignIn() {
     email: '',
     password: ''
   });
+  const { setUserAuth } = useAuthContext();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,8 +19,9 @@ export default function FormSignIn() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const token = await apiAuth.signIn(formData);
+      const token: string = await apiAuth.signIn(formData);
       localStorage.setItem('user', JSON.stringify({ token }));
+      setUserAuth({token});
       router.push('/');
     } catch (err) {
       console.log(err);

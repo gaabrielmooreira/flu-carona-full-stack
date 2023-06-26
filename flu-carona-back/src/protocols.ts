@@ -1,4 +1,4 @@
-import { Booking, Payment, Ride, User, Vehicle } from '@prisma/client';
+import { Booking, Match, Payment, Ride, User, Vehicle, Stadium, City, State } from '@prisma/client';
 import { Request } from 'express';
 
 export type ApplicationError = {
@@ -26,3 +26,9 @@ export type AuthenticatedRequest = Request & JWTPayload;
 export type JWTPayload = {
   userId: number;
 };
+
+export type RideWithCompleteInfo = Ride & {
+  Match: Match,
+  City: City,
+  Vehicle: Vehicle,
+}

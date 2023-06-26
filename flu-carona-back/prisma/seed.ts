@@ -1,4 +1,4 @@
-import { Match, PrismaClient, User } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { statesMock } from './mocks/statesMock';
 import { stadiumsMock } from './mocks/stadiumsMock';
 import dayjs from 'dayjs';
@@ -112,7 +112,7 @@ async function main() {
         description: 'Só Ida',
         price: 20,
         seats: 4,
-        startAdressId: 3675,
+        startAdressId: 3671,
         matchId: 1,
         startAt: dayjs().year(2023).month(11).day(21).hour(18).toDate(),
         vehicleId: 1,

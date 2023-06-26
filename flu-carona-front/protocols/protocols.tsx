@@ -10,3 +10,70 @@ export interface FormSignIn {
   email: string;
   password: string;
 }
+
+export type Ride = {
+  id: number
+  description: string | null
+  price: number
+  seats: number
+  startAdressId: number
+  matchId: number
+  startAt: Date
+  returnAt: Date | null
+  vehicleId: number
+  isFinish: boolean
+  createdAt: Date | null
+  updatedAt: Date | null
+}
+
+export type Match = {
+  id: number
+  firstTeam: string
+  secondTeam: string
+  time: Date
+  date: Date
+  stadiumId: number
+  createdAt: Date | null
+  updatedAt: Date | null
+}
+
+export type City = {
+  id: number
+  name: string
+  stateId: number
+}
+
+export type Vehicle = {
+  id: number
+  description: string | null
+  model: string | null
+  brand: string | null
+  capacity: number | null
+  image: string | null
+  userId: number
+  createdAt: Date | null
+  updatedAt: Date | null
+}
+
+export type RideWithCompleteInfo = Ride & {
+  Match: Match & {
+    Stadium: {
+      id: number,
+      name: string,
+    }
+  },
+  City: City & {
+    State: {
+      id: number,
+      uf: string,
+      name: string,
+    }
+  },
+  Vehicle: Vehicle & {
+    User: {
+      id: number,
+      name: number,
+      photo: string,
+    }
+  },
+}

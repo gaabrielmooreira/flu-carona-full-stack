@@ -5,7 +5,7 @@ async function create(data: Omit<Ride, 'id' | 'createdAt' | 'updatedAt'> ): Prom
   return await rideRepository.create(data);
 }
 
-async function findAll(): Promise<Ride[]> {
+async function findAll() {
   return await rideRepository.findAll();
 }
 
