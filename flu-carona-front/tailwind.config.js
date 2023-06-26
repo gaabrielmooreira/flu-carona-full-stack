@@ -8,9 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'flu-red': '#6E182C',
+        'flu-red': '#531b2f',
         'flu-green': '#01633D',
         'flu-gray': '#706F6F',
+        'off-white': '#01633D',
       }
     },
   },
