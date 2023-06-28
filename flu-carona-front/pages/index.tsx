@@ -23,7 +23,9 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="flex flex-wrap gap-10">
+      <h2 className="text-4xl text-flu-red font-bold">Reserve sua carona</h2>
+
+      <div className="flex flex-wrap gap-10 mt-10">
         {rides.map((el) => <RideCard key={el.id} ride={el} />)}
       </div>
     </Layout>

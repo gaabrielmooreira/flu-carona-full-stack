@@ -1,18 +1,19 @@
+import Link from "next/link";
 import { PropsWithChildren } from "react";
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
     <div className="flex">
       <nav className={`fixed flex flex-col justify-between items-center bg-flu-red w-[300px] h-full px-4 py-10`}>
-        <h1 className={`text-flu-green text-4xl text-center font-bold `}>
-          <span className={`text-white`}>Carona </span>FLU
+        <h1 className={`text-white text-4xl text-center font-bold `}>
+         <Link href='/'>Carona <span className={`text-flu-green`}>FLU</span></Link>
         </h1>
-        <ul className={`flex flex-col items-center text-white text-lg font-semibold`}>
-          <li>Meu Perfil</li>
-          <li>Reservar Carona</li>
-          <li>Minhas Caronas</li>
-          <li>Histórico de Caronas</li>
-          <li>Sair</li>
+        <ul className={`flex flex-col items-center gap-2 text-white text-lg font-semibold`}>
+          <Link href='/profile'><li>Meu Perfil</li></Link>
+          <Link href='/create-ride'><li>Ofereça sua Carona</li></Link>
+          <Link href='/my-rides'><li>Minhas Caronas</li></Link>
+          <Link href='/history'><li>Histórico de Caronas</li></Link>
+          <Link href='/sign-in'><li>Sair</li></Link>
         </ul>
         <div>
           <img className={`w-full rounded-full`} src='https://static.adecoretecidos.com.br/public/adecoretecidos/imagens/produtos/painel-sublimado-fluminense-12252.png' />

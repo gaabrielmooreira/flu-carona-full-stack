@@ -19,7 +19,7 @@ export default function RideCard({ ride }: { ride: RideWithCompleteInfo }) {
 
         <div className="flex items-center">
           <div className="flex items-center gap-2 w-1/2">
-            <img className="w-[50px] h-[50px] rounded-full" src={ride.Vehicle.User.photo} />
+            <img className="w-[50px] h-[50px] rounded-full object-cover" src={ride.Vehicle.User.photo} />
             <p className={`text-xs`}>{ride.Vehicle.User.name}</p>
           </div>
 

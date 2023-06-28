@@ -6,13 +6,8 @@ async function create(data: CreateVehicleData & { userId: number }): Promise<Veh
   return await vehicleRepository.create(data);
 }
 
-async function findAllByUserId({ userId }: Pick<Vehicle, 'userId'>): Promise<Vehicle[]> {
-  return await vehicleRepository.findAllByUserId({ userId });
-}
-
 const vehicleService = {
   create,
-  findAllByUserId,
 };
 
 export { vehicleService };

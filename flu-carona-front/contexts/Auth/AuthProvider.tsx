@@ -9,7 +9,6 @@ function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const userJson = localStorage.getItem('user');
     const localUser: null | { token: string } = userJson ? JSON.parse(userJson) : null;
-    console.log(localUser);
     if (localUser) {
       setUserAuth(localUser);
     } else if (router.pathname !== '/sign-up' && router.pathname !== '/sign-in') {

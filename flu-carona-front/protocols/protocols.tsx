@@ -45,14 +45,14 @@ export type City = {
 
 export type Vehicle = {
   id: number
-  description: string | null
-  model: string | null
-  brand: string | null
-  capacity: number | null
-  image: string | null
+  description: string 
+  model: string 
+  brand: string 
+  capacity: number 
+  image: string 
   userId: number
-  createdAt: Date | null
-  updatedAt: Date | null
+  createdAt: Date 
+  updatedAt: Date
 }
 
 export type RideWithCompleteInfo = Ride & {
@@ -72,8 +72,16 @@ export type RideWithCompleteInfo = Ride & {
   Vehicle: Vehicle & {
     User: {
       id: number,
-      name: number,
+      name: string,
       photo: string,
     }
   },
+}
+
+export type UserWithVehicles = {
+  id: number,
+  name: string,
+  photo: string,
+  email: string,
+  Vehicles: Vehicle[],
 }

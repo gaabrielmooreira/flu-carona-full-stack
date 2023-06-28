@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import { userController } from '@/controllers';
-import { validateBody } from '@/middlewares';
+import { authMiddleware, validateBody } from '@/middlewares';
 import { signUpSchema } from '@/schemas';
 
 const userRouter = Router();
 
-userRouter.post('/sign-up', validateBody(signUpSchema), userController.signUp);
+userRouter
+  .post('/sign-up', validateBody(signUpSchema), userController.signUp)
+  .get('/vehicles', authMiddleware, userController.findUserWithVehicles);
 
 export default userRouter;
