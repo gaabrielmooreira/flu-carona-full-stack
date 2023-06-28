@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { CreateUserData } from '@/protocols';
+import { AuthenticatedRequest, CreateUserData } from '@/protocols';
 import { userService } from '@/services';
 
 async function signUp(req: Request, res: Response, next: NextFunction): Promise<Express.Response> {
@@ -13,8 +13,19 @@ async function signUp(req: Request, res: Response, next: NextFunction): Promise<
   }
 }
 
+async function findUserWithVehicles(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response> {
+  const userId = req.userId;
+  try {
+    const result = await userService.findUserWithVehicles(userId);
+    return res.send(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
 const userController = {
   signUp,
+  findUserWithVehicles,
 };
 
 export { userController };

@@ -13,20 +13,8 @@ async function create(req: AuthenticatedRequest, res: Response, next: NextFuncti
   }
 }
 
-async function findAllByUserId(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response> {
-  const { userId } = req;
-
-  try {
-    const vehicles = await vehicleService.findAllByUserId({ userId });
-    return res.send(vehicles);
-  } catch (error) {
-    next(error);
-  }
-}
-
 const vehicleController = {
   create,
-  findAllByUserId,
 };
 
 export { vehicleController };

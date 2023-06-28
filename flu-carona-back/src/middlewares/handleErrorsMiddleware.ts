@@ -14,4 +14,8 @@ export function handleErrorsMiddleware(err: ApplicationError | Error, _req: Requ
   if (err.name === 'BadRequestError') {
     return res.status(httpStatus.BAD_REQUEST).send(err.message);
   }
+
+  if (err.name === 'NotFoundError') {
+    return res.status(httpStatus.NOT_FOUND).send(err.message);
+  }
 }
