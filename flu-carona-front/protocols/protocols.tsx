@@ -55,6 +55,14 @@ export type Vehicle = {
   updatedAt: Date
 }
 
+export type CreateVehicle = {
+  description: string 
+  model: string 
+  brand: string 
+  capacity: number 
+  image: string 
+}
+
 export type RideWithCompleteInfo = Ride & {
   Match: Match & {
     Stadium: {
