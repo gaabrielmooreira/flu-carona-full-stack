@@ -10,9 +10,9 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
       />
       <div className="flex flex-col py-2 px-5 gap-2">
         <p className="text-center text-lg font-semibold">{vehicle.brand.toUpperCase()} {vehicle.model.toUpperCase()}</p>
-        <p className="text-sm">{vehicle.description}</p>
+        <p className="text-sm h-[40px]">{vehicle.description}</p>
         <p className="text-sm">Suporta {vehicle.capacity} passageiros</p>
-        <p className="self-end text-xs">Adicionado em {new Date(vehicle.createdAt).getDay()}/{new Date(vehicle.createdAt).getMonth()}/{new Date(vehicle.createdAt).getFullYear()}</p>
+        <p className="self-end justify-self-end text-xs">Adicionado em {new Date(vehicle.createdAt).getDay()}/{new Date(vehicle.createdAt).getMonth()}/{new Date(vehicle.createdAt).getFullYear()}</p>
       </div>
     </div>
   )
