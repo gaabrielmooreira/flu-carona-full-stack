@@ -10,8 +10,8 @@ export default function Layout({ children }: PropsWithChildren) {
         </h1>
         <ul className={`flex flex-col items-center gap-2 text-white text-lg font-semibold`}>
           <Link href='/profile'><li>Meu Perfil</li></Link>
-          <Link href='/'><li>Reserve sua Carona</li></Link>
-          <Link href='/my-rides'><li>Ofereça sua Carona</li></Link>
+          <Link href='/create-ride'><li>Ofereça sua Carona</li></Link>
+          <Link href='/my-rides'><li>Minhas Caronas</li></Link>
           <Link href='/history'><li>Histórico de Caronas</li></Link>
           <Link href='/sign-in'><li>Sair</li></Link>
         </ul>
