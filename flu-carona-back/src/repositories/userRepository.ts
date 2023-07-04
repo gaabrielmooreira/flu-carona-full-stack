@@ -6,6 +6,12 @@ async function create(data: CreateUserData): Promise<User> {
   return await prisma.user.create({ data });
 }
 
+async function findById(id: number): Promise<User> {
+  return await prisma.user.findUnique({
+    where: { id },
+  });
+}
+
 async function findByEmail(email: string): Promise<User> {
   return await prisma.user.findUnique({
     where: { email },
@@ -27,6 +33,7 @@ async function findUserWithVehicles(id: number) {
 
 const userRepository = {
   create,
+  findById,
   findByEmail,
   findUserWithVehicles,
 };
