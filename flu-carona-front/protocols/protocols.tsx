@@ -45,22 +45,22 @@ export type City = {
 
 export type Vehicle = {
   id: number
-  description: string 
-  model: string 
-  brand: string 
-  capacity: number 
-  image: string 
+  description: string
+  model: string
+  brand: string
+  capacity: number
+  image: string
   userId: number
-  createdAt: Date 
+  createdAt: Date
   updatedAt: Date
 }
 
 export type CreateVehicle = {
-  description: string 
-  model: string 
-  brand: string 
-  capacity: number 
-  image: string 
+  description: string
+  model: string
+  brand: string
+  capacity: number
+  image: string
 }
 
 export type RideWithCompleteInfo = Ride & {
@@ -92,4 +92,21 @@ export type UserWithVehicles = {
   photo: string,
   email: string,
   Vehicles: Vehicle[],
+}
+
+export type CreateRide = {
+  description: string;
+  price: number;
+  seats: number;
+  startAdressId: number;
+  matchId: number;
+  startAt: string;
+  returnAt: null;
+  vehicleId: number;
+}
+
+export type State = {
+  id: number,
+  uf: string,
+  name: string,
 }

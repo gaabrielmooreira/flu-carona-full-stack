@@ -5,6 +5,7 @@ import vehicleRouter from '@/routers/vehicleRouter';
 import rideRouter from '@/routers/rideRouter';
 import bookingRouter from '@/routers/bookingRouter';
 import matchRouter from '@/routers/matchRouter';
+import stateRouter from '@/routers/stateRouter';
 
 const routers = Router();
 
@@ -14,5 +15,6 @@ routers.use('/vehicles', vehicleRouter);
 routers.use('/rides', rideRouter);
 routers.use('/booking', bookingRouter);
 routers.use('/matches', matchRouter);
+routers.use('/states', stateRouter);
 
 export { routers };
