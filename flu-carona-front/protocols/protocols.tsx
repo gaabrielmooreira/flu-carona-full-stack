@@ -94,14 +94,26 @@ export type UserWithVehicles = {
   Vehicles: Vehicle[],
 }
 
+export type FormCreateRide = {
+  description: string;
+  price: string;
+  seats: number;
+  startAdressId: number;
+  matchId: number;
+  date: string;
+  time: string;
+  returnAt: string;
+  vehicleId: number;
+}
+
 export type CreateRide = {
   description: string;
   price: number;
   seats: number;
   startAdressId: number;
   matchId: number;
-  startAt: string;
-  returnAt: null;
+  startAt: Date;
+  returnAt?: Date;
   vehicleId: number;
 }
 

@@ -15,6 +15,8 @@ async function create({ userId, rideData }: { userId: number, rideData: Omit<Rid
 
   const dateStartRide = new Date(rideData.startAt);
   const validStartRide = (dateStartRide > new Date()) && (dateStartRide < new Date(match.time));
+  console.log(match.time);
+  console.log(dateStartRide);
   if(!validStartRide) throw badRequestError('startAt must be between now and matchStart')
 
   return await rideRepository.create(rideData);

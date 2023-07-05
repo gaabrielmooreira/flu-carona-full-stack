@@ -6,7 +6,7 @@ async function findAll(): Promise<State[]> {
   return res;
 }
 
-async function findCitiesByStateId(id: string): Promise<City[]> {
+async function findCitiesByStateId(id: number): Promise<City[]> {
   const { data: res } = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/states/${id}/cities`);
   return res;
 }
