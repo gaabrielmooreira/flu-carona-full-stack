@@ -8,6 +8,7 @@ const rideRouter = Router();
 rideRouter
   .use('/*', authMiddleware)
   .post('/create', validateBody(createRideSchema), rideController.create)
-  .get('/', rideController.findAll);
+  .get('/', rideController.findAll)
+  .get('/my-rides', rideController.findAllMyRides);
 
 export default rideRouter;

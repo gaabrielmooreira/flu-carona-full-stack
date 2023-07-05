@@ -6,7 +6,7 @@ import { NextFunction, Response } from 'express';
 async function create(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response> {
   const { userId } = req;
   const rideData = req.body as Omit<Ride, 'id' | 'createdAt' | 'updatedAt'>;
-  
+
   try {
     const ride = await rideService.create({ userId, rideData });
     return res.send(ride);
@@ -24,9 +24,21 @@ async function findAll(_req: AuthenticatedRequest, res: Response, next: NextFunc
   }
 }
 
+async function findAllMyRides(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response> {
+  const { userId } = req;
+
+  try {
+    const rides = await rideService.findAllMyRides({ userId });
+    return res.send(rides);
+  } catch (error) {
+    next(error);
+  }
+}
+
 const rideController = {
   create,
   findAll,
+  findAllMyRides,
 };
 
 export { rideController };
