@@ -33,22 +33,22 @@ async function main() {
       {
         firstTeam: 'Fluminense',
         secondTeam: 'Flamengo',
-        time: dayjs().year(2023).month(11).day(21).hour(21).toDate(),
-        date: dayjs().year(2023).month(11).day(21).hour(21).toDate(),
+        time: new Date('2024-01-15T20:00:00.000Z'),
+        date: new Date('2024-01-15T20:00:00.000Z'),
         stadiumId: 1,
       },
       {
         firstTeam: 'Fluminense',
         secondTeam: 'Botafogo',
-        time: dayjs().year(2023).month(6).day(28).hour(16).toDate(),
-        date: dayjs().year(2023).month(6).day(28).hour(16).toDate(),
+        time: new Date('2023-08-10T16:00:00.000Z'),
+        date: new Date('2023-08-10T16:00:00.000Z'),
         stadiumId: 2,
       },
       {
         firstTeam: 'Fluminense',
         secondTeam: 'Vasco',
-        time: dayjs().year(2023).month(8).day(12).hour(18).toDate(),
-        date: dayjs().year(2023).month(8).day(12).hour(18).toDate(),
+        time: new Date('2023-10-20T18:00:00.000Z'),
+        date: new Date('2023-10-20T18:00:00.000Z'),
         stadiumId: 3,
       },
     ]

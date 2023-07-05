@@ -1,12 +1,14 @@
 import { AuthenticatedRequest } from '@/protocols';
 import { rideService } from '@/services';
+import { Ride } from '@prisma/client';
 import { NextFunction, Response } from 'express';
 
 async function create(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response> {
   const { userId } = req;
-  const rideData = req.body;
+  const rideData = req.body as Omit<Ride, 'id' | 'createdAt' | 'updatedAt'>;
+  
   try {
-    const ride = await rideService.create({ userId, ...rideData });
+    const ride = await rideService.create({ userId, rideData });
     return res.send(ride);
   } catch (error) {
     next(error);

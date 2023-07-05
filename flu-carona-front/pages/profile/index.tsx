@@ -21,10 +21,9 @@ export default function Profile() {
     async function fetchData() {
       try {
         const data = await apiUsers.findUserWithVehicles(userAuth.token);
-        console.log(data);
         setUserProfile(data);
       } catch (error) {
-        console.log('An error occured while trying to fetch the posts:', error);
+        console.log('An error occured while trying to fetch the user:', error);
       }
     }
     if (userAuth.token) fetchData();
