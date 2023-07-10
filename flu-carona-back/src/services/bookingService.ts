@@ -8,7 +8,7 @@ async function create(data: CreateBookingData & { userId: number }): Promise<Boo
   if (!ride) throw badRequestError('Invalid ride');
   if (ride.seats <= 0) throw badRequestError('This ride is full.');
 
-  const payment = await paymentProcess(data);
+  const payment = await paymentProcess(ride.price, data);
   await rideRepository.updateSeats(1, ride);
   const booking = await bookingRepository.create({
     userId: data.userId,
@@ -19,11 +19,11 @@ async function create(data: CreateBookingData & { userId: number }): Promise<Boo
   return booking;
 }
 
-async function paymentProcess(data: Omit<CreateBookingData, 'rideId'>): Promise<Payment> {
+async function paymentProcess(value: number, data: Omit<CreateBookingData, 'rideId'>): Promise<Payment> {
   //fazer o pagamento
   //guardar o pagamento no banco de dados
   const payment = await paymentRepository.create({
-    value: data.value,
+    value,
     cardIssuer: data.cardIssuer,
     cardLastDigits: data.cardNumber.slice(-4),
   });

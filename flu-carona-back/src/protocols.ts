@@ -19,7 +19,7 @@ export type CreateBookingData = {
   cardNumber: string;
   expirationDate: string;
   cvv: number;
-} & Pick<Booking, 'rideId'> & Pick<Payment, 'cardIssuer' | 'value'>;
+} & Pick<Booking, 'rideId'> & Pick<Payment, 'cardIssuer'>;
 
 export type AuthenticatedRequest = Request & JWTPayload;
 
