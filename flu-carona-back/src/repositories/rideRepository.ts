@@ -5,6 +5,13 @@ async function create(data: Omit<Ride, 'id' | 'createdAt' | 'updatedAt'>): Promi
   return await prisma.ride.create({ data });
 }
 
+async function updateSeats(seatsToReserve: number, ride: Ride) {
+  return prisma.ride.update({
+    data: { seats: ride.seats - seatsToReserve },
+    where: { id: ride.id }
+  });
+}
+
 async function findAll() {
   return await prisma.ride.findMany({
     include: {
@@ -73,7 +80,7 @@ async function findAllMyRides(userId: number) {
       },
     },
     where: {
-      Vehicle:{
+      Vehicle: {
         User: {
           id: userId
         }
@@ -84,6 +91,7 @@ async function findAllMyRides(userId: number) {
 
 const rideRepository = {
   create,
+  updateSeats,
   findAll,
   findById,
   findAllMyRides,
