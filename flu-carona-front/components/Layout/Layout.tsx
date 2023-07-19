@@ -19,7 +19,7 @@ export default function Layout({ children }: PropsWithChildren) {
           <img className={`w-full rounded-full`} src='https://static.adecoretecidos.com.br/public/adecoretecidos/imagens/produtos/painel-sublimado-fluminense-12252.png' />
         </div>
       </nav>
-      <main className={`ml-[300px] w-full px-10 py-8`}>
+      <main className={`ml-[300px] w-full min-h-screen px-10 pt-8`}>
         {children}
       </main>
     </div>

@@ -9,6 +9,7 @@ rideRouter
   .use('/*', authMiddleware)
   .post('/create', validateBody(createRideSchema), rideController.create)
   .get('/', rideController.findAll)
-  .get('/my-rides', rideController.findAllMyRides);
-
+  .get('/my-rides', rideController.findAllMyRides)
+  .get('/:rideId', rideController.findById);
+  
 export default rideRouter;

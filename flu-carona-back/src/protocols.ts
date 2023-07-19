@@ -27,8 +27,25 @@ export type JWTPayload = {
   userId: number;
 };
 
-export type RideWithCompleteInfo = Ride & {
-  Match: Match,
-  City: City,
-  Vehicle: Vehicle,
+export type RideResponseWithAllInfo = Ride & {
+  Match: Match & {
+    Stadium: {
+      id: number,
+      name: string,
+    }
+  },
+  City: City & {
+    State: {
+      id: number,
+      uf: string,
+      name: string,
+    }
+  },
+  Vehicle: Vehicle & {
+    User: {
+      id: number,
+      name: string,
+      photo: string,
+    }
+  },
 }

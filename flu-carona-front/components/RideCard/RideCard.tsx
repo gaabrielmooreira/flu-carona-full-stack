@@ -1,7 +1,9 @@
 import { RideWithCompleteInfo } from "@/protocols/protocols";
+import { useRouter } from "next/router";
 
 export default function RideCard({ ride }: { ride: RideWithCompleteInfo }) {
   const startAt = new Date(ride.startAt);
+  const router = useRouter();
 
   return (
     <div key={ride.id} className="flex flex-col justify-between w-96 h-60 p-7 bg-white rounded-3xl shadow-[0_0_10px_2px_rgba(0,0,0,0.3)] shadow-black">
@@ -23,7 +25,7 @@ export default function RideCard({ ride }: { ride: RideWithCompleteInfo }) {
             <p className={`text-xs`}>{ride.Vehicle.User.name}</p>
           </div>
 
-          <button className={`w-1/2 h-8 self-end bg-flu-red rounded-lg font-semibold text-white`}>Reservar</button>
+          <button onClick={() => { router.push(`/rides/${ride.id}`) }} className={`w-1/2 h-8 self-end bg-flu-red rounded-lg font-semibold text-white`}>Reservar</button>
         </div>
       </div>
     </div>

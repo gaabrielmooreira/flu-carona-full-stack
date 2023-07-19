@@ -6,3 +6,4 @@ export * from './paymentRepository';
 export * from './cityRepository';
 export * from './matchRepository';
 export * from './stateRepository';
+export * from './stadiumRepository';
