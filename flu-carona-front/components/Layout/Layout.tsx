@@ -13,6 +13,7 @@ export default function Layout({ children }: PropsWithChildren) {
           <Link href='/'><li>Reserve sua Carona</li></Link>
           <Link href='/my-rides'><li>Ofereça sua Carona</li></Link>
           <Link href='/history'><li>Histórico de Caronas</li></Link>
+          <Link href='/my-booked-rides'><li>Caronas Reservadas</li></Link>
           <Link href='/sign-in'><li>Sair</li></Link>
         </ul>
         <div>
