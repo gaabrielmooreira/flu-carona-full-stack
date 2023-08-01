@@ -35,10 +35,22 @@ async function findAllMyRides(req: AuthenticatedRequest, res: Response, next: Ne
   }
 }
 
+async function findById(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response> {
+  const rideId = req.params.rideId as string;
+
+  try {
+    const ride = await rideService.findById({ rideId: Number(rideId) });
+    return res.send(ride);
+  } catch (error) {
+    next(error);
+  }
+}
+
 const rideController = {
   create,
   findAll,
   findAllMyRides,
+  findById,
 };
 
 export { rideController };

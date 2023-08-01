@@ -122,3 +122,16 @@ export type State = {
   uf: string,
   name: string,
 }
+
+export type Booking = {
+  id: number
+  userId: number
+  rideId: number
+  paymentId: number
+  createdAt: Date | null
+  updatedAt: Date | null
+}
+
+export type UserBookedRides = Booking & {
+  Ride: RideWithCompleteInfo,
+}

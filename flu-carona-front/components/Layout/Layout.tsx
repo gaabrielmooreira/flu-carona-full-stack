@@ -13,13 +13,14 @@ export default function Layout({ children }: PropsWithChildren) {
           <Link href='/'><li>Reserve sua Carona</li></Link>
           <Link href='/my-rides'><li>Ofereça sua Carona</li></Link>
           <Link href='/history'><li>Histórico de Caronas</li></Link>
+          <Link href='/my-booked-rides'><li>Caronas Reservadas</li></Link>
           <Link href='/sign-in'><li>Sair</li></Link>
         </ul>
         <div>
           <img className={`w-full rounded-full`} src='https://static.adecoretecidos.com.br/public/adecoretecidos/imagens/produtos/painel-sublimado-fluminense-12252.png' />
         </div>
       </nav>
-      <main className={`ml-[300px] w-full px-10 py-8`}>
+      <main className={`ml-[300px] w-full min-h-screen px-10 pt-8`}>
         {children}
       </main>
     </div>

@@ -67,7 +67,7 @@ export default function Profile() {
         {
           userProfile?.Vehicles.length === 0
             ? <p className="w-full mt-5">Você ainda não tem veículos cadastrados.</p>
-            : userProfile.Vehicles.map((vehicle) => <VehicleCard vehicle={vehicle} />)
+            : userProfile.Vehicles.map((vehicle) => <VehicleCard key={vehicle.id} vehicle={vehicle} />)
         }
       </div>
     </Layout>

@@ -6,9 +6,10 @@ import { Booking, Payment } from "@prisma/client";
 async function create(data: CreateBookingData & { userId: number }): Promise<Booking> {
   const ride = await rideRepository.findById(data.rideId);
   if (!ride) throw badRequestError('Invalid ride');
-  
-  const payment = await paymentProcess(data);
+  if (ride.seats <= 0) throw badRequestError('This ride is full.');
 
+  const payment = await paymentProcess(ride.price, data);
+  await rideRepository.updateSeats(1, ride);
   const booking = await bookingRepository.create({
     userId: data.userId,
     rideId: data.rideId,
@@ -18,11 +19,16 @@ async function create(data: CreateBookingData & { userId: number }): Promise<Boo
   return booking;
 }
 
-async function paymentProcess(data: Omit<CreateBookingData, 'rideId'>): Promise<Payment> {
+async function findAllBookedRidesByUserId({ userId }: { userId: number }) {
+  return await bookingRepository.findAllBookedRidesByUserId(userId);
+}
+
+
+async function paymentProcess(value: number, data: Omit<CreateBookingData, 'rideId'>): Promise<Payment> {
   //fazer o pagamento
-  //criar o pagamento
+  //guardar o pagamento no banco de dados
   const payment = await paymentRepository.create({
-    value: data.value,
+    value,
     cardIssuer: data.cardIssuer,
     cardLastDigits: data.cardNumber.slice(-4),
   });
@@ -31,6 +37,7 @@ async function paymentProcess(data: Omit<CreateBookingData, 'rideId'>): Promise<
 
 const bookingService = {
   create,
+  findAllBookedRidesByUserId,
 };
 
 export { bookingService };

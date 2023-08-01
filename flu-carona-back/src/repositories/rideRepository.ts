@@ -1,11 +1,19 @@
 import { Ride } from '@prisma/client';
 import { prisma } from '@/configs';
+import { RideResponseWithAllInfo } from '@/protocols';
 
 async function create(data: Omit<Ride, 'id' | 'createdAt' | 'updatedAt'>): Promise<Ride> {
   return await prisma.ride.create({ data });
 }
 
-async function findAll() {
+async function updateSeats(seatsToReserve: number, ride: Ride) {
+  return prisma.ride.update({
+    data: { seats: ride.seats - seatsToReserve },
+    where: { id: ride.id }
+  });
+}
+
+async function findAll(): Promise<RideResponseWithAllInfo[]> {
   return await prisma.ride.findMany({
     include: {
       Match: {
@@ -73,7 +81,7 @@ async function findAllMyRides(userId: number) {
       },
     },
     where: {
-      Vehicle:{
+      Vehicle: {
         User: {
           id: userId
         }
@@ -84,6 +92,7 @@ async function findAllMyRides(userId: number) {
 
 const rideRepository = {
   create,
+  updateSeats,
   findAll,
   findById,
   findAllMyRides,
