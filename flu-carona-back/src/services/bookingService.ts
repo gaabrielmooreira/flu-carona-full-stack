@@ -19,6 +19,11 @@ async function create(data: CreateBookingData & { userId: number }): Promise<Boo
   return booking;
 }
 
+async function findAllBookedRidesByUserId({ userId }: { userId: number }) {
+  return await bookingRepository.findAllBookedRidesByUserId(userId);
+}
+
+
 async function paymentProcess(value: number, data: Omit<CreateBookingData, 'rideId'>): Promise<Payment> {
   //fazer o pagamento
   //guardar o pagamento no banco de dados
@@ -32,6 +37,7 @@ async function paymentProcess(value: number, data: Omit<CreateBookingData, 'ride
 
 const bookingService = {
   create,
+  findAllBookedRidesByUserId,
 };
 
 export { bookingService };

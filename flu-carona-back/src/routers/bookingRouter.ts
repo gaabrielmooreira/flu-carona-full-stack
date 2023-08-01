@@ -6,6 +6,7 @@ import { Router } from "express";
 const bookingRouter = Router();
 
 bookingRouter.use('/*', authMiddleware)
-  .post('/', validateBody(bookingSchema), bookingController.create);
+  .post('/', validateBody(bookingSchema), bookingController.create)
+  .get('/rides', bookingController.findAllBookedRidesByUserId);
 
 export default bookingRouter;
